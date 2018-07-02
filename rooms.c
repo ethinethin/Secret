@@ -66,9 +66,11 @@ extern void move(char *direction)
 {
 	int dir;
 
+	putchar('\n');
+
 	/* figure out direction */
 	if (direction == NULL) {
-		printf("\nWalk where?\n");
+		printf("Walk where?\n");
 		return;
 	} else if (strcmp(direction,"north") == 0) {
 		dir = 0;
@@ -79,18 +81,18 @@ extern void move(char *direction)
 	} else if (strcmp(direction,"west") == 0) {
 		dir = 3;
 	} else {
-		printf("\nWalk where?\n");
+		printf("Walk where?\n");
 		return;
 	}
 
 	/* move */
 	if (locations[current_room].walk_to[dir] != -1) {
-		printf("\n%s\n",locations[current_room].walk_desc[dir]);
+		printf("%s\n",locations[current_room].walk_desc[dir]);
 		current_room = locations[current_room].walk_to[dir];
 		room_name();
 		look_room();
 	} else {
-		printf("\nYou cannot walk %s.\n",direction);
+		printf("You cannot walk %s.\n",direction);
 	}
 
 }

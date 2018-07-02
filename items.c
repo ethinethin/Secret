@@ -34,8 +34,6 @@
 #include "items.h"
 #include "items-desc.h"
 static void assign_name(char **word1, char **word2, char **adj, char **name);
-static int in_room(int room_id, char *adj, char *name);
-static int in_inv(char *adj, char *name);
 
 /* display items in room */
 extern void room_items(int room_id)
@@ -65,8 +63,7 @@ extern void search(int room_id)
 	int i;
 	int count;
 	printf("\nYou carefully search the area. ");
-	count = 0;
-	for (i = 0; items[i].item_id != -1; i++) {
+	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (items[i].location == room_id && items[i].hidden == YES) {
 			if (count > 0)
 				printf("You also found a ");
@@ -95,8 +92,7 @@ extern void list_inv(void)
 	int count;
 	
 	printf("\nInventory:\n");
-	count = 0;
-	for (i = 0; items[i].item_id != -1; i++) {
+	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (inventory[i] == YES) {
 			count++;
 			putchar('\t');
@@ -110,15 +106,14 @@ extern void list_inv(void)
 }
 
 /* in inventory */
-static int in_room(int room_id, char *adj, char *name)
+extern int in_room(int room_id, char *adj, char *name)
 {
 	int i;
 	int item_num;
 	int count;
 
 	/* find out if given name is ambiguous */
-	count = 0;
-	for (i = 0; items[i].item_id != -1; i++) {
+	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (strcmp(items[i].item_name,name) == 0 &&
 			items[i].location == room_id && items[i].hidden == NO) {
 			if (adj == NULL) {
@@ -150,8 +145,10 @@ extern void take_item(int room_id, char *word1, char *word2)
 	char *name;
 	int item_num;
 
+	putchar('\n');
+
 	if (word1 == NULL) {
-		printf("\nTake what?\n");
+		printf("Take what?\n");
 		return;
 	}
 	
@@ -164,12 +161,12 @@ extern void take_item(int room_id, char *word1, char *word2)
 	/* if none were found, the item is not present */
 	/* if only one was found, it's not ambiguous */
 	if (item_num == -1) {
-		printf("\nThere is no '");
+		printf("There is no '");
 		if (adj != NULL) printf("%s ",adj);
 		printf("%s' here.\n",name);
 		return;
 	} else if (item_num == -2) {
-		printf("\nWhich %s do you want to take?\n",name);
+		printf("Which %s do you want to take?\n",name);
 		return;
 	}
 
@@ -177,24 +174,23 @@ extern void take_item(int room_id, char *word1, char *word2)
 	if (items[item_num].takeable == YES) {
 		items[item_num].location = -1;
 		inventory[item_num] = 1;
-		printf("\nYou took the ");
+		printf("You took the ");
 		if (items[item_num].item_adj != NULL)
 			printf("%s ",items[item_num].item_adj);
 		printf("%s.\n",name);
 	} else {
-		printf("\nYou cannot take the %s!\n",name);
+		printf("You cannot take the %s!\n",name);
 	}
 }
 
-static int in_inv(char *adj, char *name)
+extern int in_inv(char *adj, char *name)
 {
 	int i;
 	int item_num;
 	int count;
 	
 	/* find out if given name is ambiguous */
-	count = 0;
-	for (i = 0; items[i].item_id != -1; i++) {
+	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (strcmp(items[i].item_name,name) == 0 &&
 			inventory[i] == YES) {
 			if (adj == NULL) {
@@ -226,8 +222,10 @@ extern void drop_item(int room_id, char *word1, char *word2)
 	char *name = NULL;
 	int item_num;
 
+	putchar('\n');
+
 	if (word1 == NULL) {
-		printf("\nDrop what?\n");
+		printf("Drop what?\n");
 		return;
 	}
 	
@@ -240,19 +238,19 @@ extern void drop_item(int room_id, char *word1, char *word2)
 	/* if none were found, the item is not in inventory */
 	/* if only one was found, it's not ambiguous */
 	if (item_num == -1) {
-		printf("\nYou do not have a '");
+		printf("You do not have a '");
 		if (adj != NULL) printf("%s ",adj);
 		printf("%s'.\n",name);
 		return;
 	} else if (item_num == -2) {
-		printf("\nWhich %s do you want to drop?\n",name);
+		printf("Which %s do you want to drop?\n",name);
 		return;
 	}
 
 	/* drop item */
 	items[item_num].location = room_id;
 	inventory[item_num] = NO;
-	printf("\nYou dropped the ");
+	printf("You dropped the ");
 	if (items[item_num].item_adj != NULL)
 		printf("%s ",items[item_num].item_adj);
 	printf("%s.\n",name);
@@ -266,8 +264,10 @@ extern void look_item(int room_id, char *word1, char *word2)
 	int item_num1;
 	int item_num2;
 
+	putchar('\n');
+
 	if (word1 == NULL) {
-		printf("\nLook at what?\n");
+		printf("Look at what?\n");
 		return;
 	}
 	
@@ -280,10 +280,10 @@ extern void look_item(int room_id, char *word1, char *word2)
 
 	/* is it ambiguous? */
 	if (item_num1 == -2 || item_num2 == -2 || (item_num1 >= 0 && item_num2 >= 0)) {
-		printf("\nWhich %s?\n",name);
+		printf("Which %s?\n",name);
 		return;
 	} else if (item_num1 == -1 && item_num2 == -1) {
-		printf("\nThere is no '");
+		printf("There is no '");
 		if (adj != NULL) printf("%s ",adj);
 		printf("%s' here.\n",name);
 		return;
@@ -291,5 +291,5 @@ extern void look_item(int room_id, char *word1, char *word2)
 		item_num1 = item_num2;
 	}
 
-	printf("\n%s\n",items[item_num1].item_desc_exam);
+	printf("%s\n",items[item_num1].item_desc_exam);
 }
