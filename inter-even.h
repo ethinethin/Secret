@@ -57,77 +57,88 @@ struct event {
 
 static struct event interactions[] = {
 	/* lever to hidden temple */
-	{0,10,-1,32,YES,OPEN,NORTH,32,33,1,YES,
+	{0,11,-1,32,YES,OPEN,NORTH,32,33,1,YES,
 		"The large gate rumbles loudly as it opens."},
-	{1,10,-1,32,NO,OPEN,NORTH,32,-1,0,YES,
+	{1,11,-1,32,NO,OPEN,NORTH,32,-1,0,YES,
 		"The large gate quickly crashes down with a clatter. The way is blocked!"},
 
 	/* hammer breaking wall in cave */
-	{2,5,-1,12,YES,BREAK,WEST,5,-1,3,NO,
+	{2,18,-1,12,YES,BREAK,WEST,18,-1,3,NO,
 		"You smash the hammer against the west wall. It opened up a path you can crawl"},
-	{3,5,-1,12,NO,OPEN,WEST,12,13,-1,YES,
+	{3,18,-1,12,NO,OPEN,WEST,12,13,-1,YES,
 		"through! But the hammer is now broken and useless. You throw it away."},
 
 	/* ladder used for climbing rockslide */
-	{4,6,-1,20,YES,BREAK,EAST,6,-1,5,NO,
+	{4,19,-1,20,YES,BREAK,EAST,19,-1,5,NO,
 		"You unfold the ladder and place it on the steep rockslide to the east. It looks"},
-	{5,6,-1,20,NO,CREATE,EAST,11,20,6,NO,
+	{5,19,-1,20,NO,CREATE,EAST,8,20,6,NO,
 		"like you can climb up it, but you give it a shake to make sure it is secure"},
-	{6,6,-1,20,NO,OPEN,EAST,20,30,-1,YES,
+	{6,19,-1,20,NO,OPEN,EAST,20,30,-1,YES,
 		"enough to climb. You can now travel east!"},
 
 	/* open gate east side */
-	{7,7,12,29,YES,BREAK,WEST,7,-1,8,NO,
+	{7,20,9,29,YES,BREAK,WEST,20,-1,8,NO,
 		"You slide the key into the keyhole in the gate. As you turn, it clicks loudly."},
-	{8,7,12,29,NO,BREAK,WEST,12,-1,9,NO,
+	{8,20,9,29,NO,BREAK,WEST,9,-1,9,NO,
 		"The gate swings open, allowing you to ascend the tower to the west!"},
-	{9,7,12,29,NO,OPEN,WEST,29,30,10,NO,NULL},
-	{10,7,12,29,NO,OPEN,EAST,30,29,11,NO,NULL},
-	{11,7,12,29,NO,BREAK,WEST,13,-1,-1,YES,NULL},
+	{9,20,9,29,NO,OPEN,WEST,29,30,10,NO,NULL},
+	{10,20,9,29,NO,OPEN,EAST,30,29,11,NO,NULL},
+	{11,20,9,29,NO,BREAK,WEST,10,-1,-1,YES,NULL},
 
 	/* open gate west side */
-	{12,7,13,30,YES,BREAK,WEST,7,-1,13,NO,
+	{12,20,10,30,YES,BREAK,WEST,20,-1,13,NO,
 		"You slide the key into the keyhole in the gate. As you turn, it clicks loudly."},
-	{13,7,13,30,NO,BREAK,WEST,13,-1,14,NO,
+	{13,20,10,30,NO,BREAK,WEST,10,-1,14,NO,
 		"The gate swings open, allowing you to descend the tower to the east!"},
-	{14,7,13,30,NO,OPEN,WEST,29,30,15,NO,NULL},
-	{15,7,13,30,NO,OPEN,EAST,30,29,16,NO,NULL},
-	{16,7,13,30,NO,BREAK,WEST,12,-1,-1,YES,NULL},
+	{14,20,10,30,NO,OPEN,WEST,29,30,15,NO,NULL},
+	{15,20,10,30,NO,OPEN,EAST,30,29,16,NO,NULL},
+	{16,20,10,30,NO,BREAK,WEST,9,-1,-1,YES,NULL},
 
 	/* sword breaks statue */
-	{17,4,14,24,YES,BREAK,EAST,14,-1,18,NO,
+	{17,17,3,24,YES,BREAK,EAST,3,-1,18,NO,
 		"You swing the giant sword at the statue. As you slice the stone shield, the\n"
 		"statue begins to collapse. You keep attacking it until it completely falls\n"
 		"apart. As the statue lies in ruin, the path to the east is now open."},
-	{18,4,14,24,NO,OPEN,EAST,24,25,-1,YES},
+	{18,17,3,24,NO,OPEN,EAST,24,25,-1,YES},
 
 	/* open blue kiosk with coins */
-	{19,0,15,18,YES,BREAK,NORTH,0,0,20,NO,
+	{19,13,4,18,YES,BREAK,NORTH,13,0,20,NO,
 		"You slide the blue coin into the slot at the top of the kiosk. The kiosk slowly\n"
 		"rumbles, and its inner stone workings begin to shift around. The blue pyramid\n"
 		"slides away beneath a hidden compartment and a stone, green sphere shifts into\n"
 		"the same position."},
-	{20,0,15,18,NO,BREAK,NORTH,15,0,21,NO,NULL},
-	{21,0,15,18,NO,CREATE,NORTH,16,18,-1,YES,NULL},
+	{20,13,4,18,NO,BREAK,NORTH,4,0,21,NO,NULL},
+	{21,13,4,18,NO,CREATE,NORTH,5,18,-1,YES,NULL},
 
 	/* open green kiosk with coins */
-	{22,1,16,18,YES,BREAK,NORTH,1,1,23,NO,
+	{22,14,5,18,YES,BREAK,NORTH,14,1,23,NO,
 		"You slip the green coin into the slot in the kiosk. Once again, the kiosk starts\n"
 		"rumbling loudly as its inner workings come to life. The green sphere disappears\n"
 		"into a hidden panel and a rectangular red stone takes its place."},
-	{23,1,16,18,NO,BREAK,NORTH,16,1,24,NO,NULL},
-	{24,1,16,18,NO,CREATE,NORTH,17,18,-1,YES,NULL},
+	{23,14,5,18,NO,BREAK,NORTH,5,1,24,NO,NULL},
+	{24,14,5,18,NO,CREATE,NORTH,6,18,-1,YES,NULL},
 
 	/* open red kiosk with coins */
-	{25,2,17,18,YES,BREAK,NORTH,2,0,26,NO,
+	{25,15,6,18,YES,BREAK,NORTH,15,0,26,NO,
 		"Once again, the kiosk comes to life as soon as you slide the red coin into the\n"
 		"slot. As the red stone slides into the inside, you hear a haunting melody come\n"
 		"from within the kiosk. As the song slowly fades away, the kiosk slides into a\n"
 		"hidden panel in the stone on which it sat. The hole in the stone slab remains,\n"
 		"revealing a ladder down into an underground tunnel that leads north."},
-	{26,2,17,18,NO,BREAK,NORTH,17,0,27,NO,NULL},
-	{27,2,17,18,NO,OPEN,NORTH,18,19,28,NO,NULL},
-	{28,2,17,18,NO,CREATE,NORTH,18,18,-1,YES,NULL},
+	{26,15,6,18,NO,BREAK,NORTH,6,0,27,NO,NULL},
+	{27,15,6,18,NO,OPEN,NORTH,18,19,28,NO,NULL},
+	{28,15,6,18,NO,CREATE,NORTH,7,18,-1,YES,NULL},
+
+	/* buy sword with statuette */
+	{29,16,0,6,YES,BREAK,EAST,16,-1,30,NO,
+		"The blacksmith sees the statuette and his eyes get wide.\n\n"
+		"\"Please! I must have that! Take this sword! I crafted it myself! It is the most\n"
+		"finely made sword you will ever see!\"\n"},
+	{30,16,0,6,NO,CREATE,EAST,17,6,31,NO,
+		"You are impressed with the quality of the sword and think it is an even trade.\n"
+		"The blacksmith takes the statuette and places the sword on the counter."},
+	{31,16,0,6,NO,BREAK,EAST,0,6,32,NO,NULL},
+	{31,16,0,6,NO,CREATE,EAST,1,6,-1,YES,NULL},
 
 	/* keep this to signal no more interactions: */
 	{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,NULL}
