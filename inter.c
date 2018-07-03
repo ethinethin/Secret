@@ -203,8 +203,7 @@ static void four_words(int room, char *words[4])
 static void interact(int room, int item1, int item2)
 {
 	int i;
-	int quit;
-	for (quit = 0, i = 0; interactions[i].event_id != -1; i++) {
+	for (i = 0; interactions[i].event_id != -1; i++) {
 		if (interactions[i].room_id == room &&
 			interactions[i].item1 == item1 &&
 			interactions[i].item2 == item2 &&
@@ -214,8 +213,6 @@ static void interact(int room, int item1, int item2)
 				location_move(interactions[i].event_attr1,
 					interactions[i].event_dir,
 					interactions[i].event_attr2);
-				/* stop after first event that matches */
-				quit = -1;
 			} else if (interactions[i].event_type == BREAK) {
 				break_item(interactions[i].event_attr1);
 			} else if (interactions[i].event_type == CREATE) {
