@@ -42,6 +42,9 @@ struct item {
 #define NO 0
 #define YES 1
 
+/* non-takeable items should be listed first, so that they will appear before
+ * anything dropped in the room.
+ */
 struct item items[] = {
 	{
 		0,
@@ -76,7 +79,7 @@ struct item items[] = {
 		"statuette","gold",
 		"There is a gold statuette here.",
 		"The gleaming statuette looks like a regal owl.",
-		NO,
+		YES,
 		YES,
 		14
 	},
@@ -220,6 +223,16 @@ struct item items[] = {
 		NO,
 		NO,
 		-1
+	},
+	{
+		19,
+		"scepter","valuable",
+		"There is a valuable scepter here.",
+		"The scepter is heavy and ornate, lined with gold and silver, and topped with a\n"
+		"shiny gem on top that is as big as your fist.",
+		YES,
+		YES,
+		14
 	},
 
 	/* keep this last as a signal for the last item */

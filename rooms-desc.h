@@ -154,26 +154,32 @@ static struct room locations[] = {
 	{
 		12,
 		"Cave-In",
-		"You are deep in a cave.",
+		"You are deep in a cave. A cave-in blocks a tunnel to the south. You can hear\n"
+		"running water coming somewhere from the west.", 
 		{11,-1,-1,-1},
-		{"You walk north.",NULL,NULL,"You walk west."},
+		{"You walk north.",NULL,NULL,"You climb through the passage west."},
 		NULL
 	},
 	{
 		13,
-		"Cave",
-		"Cave",
+		"Underground River",
+		"You are in a dark room in the cave. You feel wind and water spraying your face\n"
+		"as you stand beside an underground river. You see pale, blue lights coming from\n"
+		"the south, accessible if you follow the river. A small passage opens to the\n"
+		"east.",
 		{-1,12,14,-1},
-		{NULL,"You walk east.","You walk south.",NULL},
+		{NULL,"You climb through the passage east.","You follow the river south.",NULL},
 		NULL
 	},
 	{
 		14,
-		"Cave",
-		"Cave",
+		"Treasure Chamber",
+		"You are in a room lined with strange, pale blue torches. There are piles of\n"
+		"treasure, including hundreds of shiny gold coins, lining the room. The only way\n"
+		"to leave is by following the river north.",
 		{13,-1,-1,-1},
-		{"You walk north.",NULL,NULL,NULL},
-		NULL
+		{"You follow the river north.",NULL,NULL,NULL},
+		"You search through the treasure piles."
 	},
 	{
 		15,
@@ -193,8 +199,10 @@ static struct room locations[] = {
 	},
 	{
 		17,
-		"Forest",
-		"Forest",
+		"Near the Clearing",
+		"You are on a path at the edges of the forest. There is a clearing to the north\n"
+		"which appears to be full of stone columns. To the south, the forest is slightly\n"
+		"more dense.",
 		{18,-1,16,-1},
 		{"You walk north.",NULL,"You walk south.",NULL},
 		NULL
@@ -243,8 +251,9 @@ static struct room locations[] = {
 	},
 	{
 		22,
-		"Forest",
-		"Forest",
+		"Curve in the Forest Path",
+		"You are walking along the forest path. To the north, the forest appears to be\n"
+		"more dense. To the west, the forest is less dense.",
 		{23,-1,-1,21},
 		{"You walk north.",NULL,NULL,"You walk west."},
 		NULL
@@ -275,10 +284,14 @@ static struct room locations[] = {
 	},
 	{
 		26,
-		"Forest",
-		"Forest",
-		{27,-1,25,-1},
-		{"You walk north.",NULL,"You walk south.",NULL},
+		"Thicket Crossroads",
+		"You are walking in the forest. A forst path runs north and south. On both sides\n"
+		"of the path are dense thickets, which you could probably travel through.",
+		{27,22,25,17},
+		{"You walk north.",
+		"You walk into the east thicket. You get lost in the forest for awhile.",
+		"You walk south.",
+		"You walk into the west thicket. You get lost in the forest for awhile."},
 		NULL
 	},
 	{

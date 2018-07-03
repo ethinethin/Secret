@@ -233,19 +233,20 @@ void display_help(void)
 {
 	printf("\n--------------------------------------------------------------------------------\n");
 	printf("HOW TO PLAY\n");
-	printf("\tUse all of your knowledge and wit to solve the mystery of the forest!\n");
+	printf("\tExplore the world and solve the mystery of the forest!\n");
 	printf("\tTo perform an action, use the following commands:\n");
 	printf("--------------------------------------------------------------------------------\n");
-	printf("NAVIGATION\n");
+	printf("NAVIGATING THE WORLD\n");
 	printf("\twalk direction (or just direction) - move in the direction specified\n");
 	printf("\tlook - examine your surroundings\n");
 	printf("--------------------------------------------------------------------------------\n");
-	printf("ITEMS\n");
+	printf("MANAGING ITEMS\n");
 	printf("\tinventory - list your belongings\n");
 	printf("\ttake - pick up an item\n");
 	printf("\tdrop - drop an item\n");
 	printf("--------------------------------------------------------------------------------\n");
-	printf("INTERACTIONS\n");
+	printf("INTERACTING WITH THE WORLD\n");
 	printf("\tsearch - look for hidden objects\n");
+	printf("\tuse - use an item or items\n");
 	printf("--------------------------------------------------------------------------------\n");
 }
