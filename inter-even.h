@@ -71,7 +71,7 @@ static struct event interactions[] = {
 	/* ladder used for climbing rockslide */
 	{4,6,-1,20,YES,BREAK,EAST,6,-1,5,NO,
 		"You unfold the ladder and place it on the steep rockslide to the east. It looks"},
-	{5,6,-1,20,NO,CREATE,EAST,11,-1,6,NO,
+	{5,6,-1,20,NO,CREATE,EAST,11,20,6,NO,
 		"like you can climb up it, but you give it a shake to make sure it is secure"},
 	{6,6,-1,20,NO,OPEN,EAST,20,30,-1,YES,
 		"enough to climb. You can now travel east!"},
@@ -93,6 +93,41 @@ static struct event interactions[] = {
 	{14,7,13,30,NO,OPEN,WEST,29,30,15,NO,NULL},
 	{15,7,13,30,NO,OPEN,EAST,30,29,16,NO,NULL},
 	{16,7,13,30,NO,BREAK,WEST,12,-1,-1,YES,NULL},
+
+	/* sword breaks statue */
+	{17,4,14,24,YES,BREAK,EAST,14,-1,18,NO,
+		"You swing the giant sword at the statue. As you slice the stone shield, the\n"
+		"statue begins to collapse. You keep attacking it until it completely falls\n"
+		"apart. As the statue lies in ruin, the path to the east is now open."},
+	{18,4,14,24,NO,OPEN,EAST,24,25,-1,YES},
+
+	/* open blue kiosk with coins */
+	{19,0,15,18,YES,BREAK,NORTH,0,0,20,NO,
+		"You slide the blue coin into the slot at the top of the kiosk. The kiosk slowly\n"
+		"rumbles, and its inner stone workings begin to shift around. The blue pyramid\n"
+		"slides away beneath a hidden compartment and a stone, green sphere shifts into\n"
+		"the same position."},
+	{20,0,15,18,NO,BREAK,NORTH,15,0,21,NO,NULL},
+	{21,0,15,18,NO,CREATE,NORTH,16,18,-1,YES,NULL},
+
+	/* open green kiosk with coins */
+	{22,1,16,18,YES,BREAK,NORTH,1,1,23,NO,
+		"You slip the green coin into the slot in the kiosk. Once again, the kiosk starts\n"
+		"rumbling loudly as its inner workings come to life. The green sphere disappears\n"
+		"into a hidden panel and a rectangular red stone takes its place."},
+	{23,1,16,18,NO,BREAK,NORTH,16,1,24,NO,NULL},
+	{24,1,16,18,NO,CREATE,NORTH,17,18,-1,YES,NULL},
+
+	/* open red kiosk with coins */
+	{25,2,17,18,YES,BREAK,NORTH,2,0,26,NO,
+		"Once again, the kiosk comes to life as soon as you slide the red coin into the\n"
+		"slot. As the red stone slides into the inside, you hear a haunting melody come\n"
+		"from within the kiosk. As the song slowly fades away, the kiosk slides into a\n"
+		"hidden panel in the stone on which it sat. The hole in the stone slab remains,\n"
+		"revealing a ladder down into an underground tunnel that leads north."},
+	{26,2,17,18,NO,BREAK,NORTH,17,0,27,NO,NULL},
+	{27,2,17,18,NO,OPEN,NORTH,18,19,28,NO,NULL},
+	{28,2,17,18,NO,CREATE,NORTH,18,18,-1,YES,NULL},
 
 	/* keep this to signal no more interactions: */
 	{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,NULL}

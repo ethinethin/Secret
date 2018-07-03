@@ -219,7 +219,7 @@ static void interact(int room, int item1, int item2)
 			} else if (interactions[i].event_type == BREAK) {
 				break_item(interactions[i].event_attr1);
 			} else if (interactions[i].event_type == CREATE) {
-				create_item(interactions[i].event_attr1, interactions[i].room_id);
+				create_item(interactions[i].event_attr1, interactions[i].event_attr2);
 			}
 
 			/* print description */

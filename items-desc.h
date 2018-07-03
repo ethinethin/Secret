@@ -112,7 +112,7 @@ struct item items[] = {
 		"key","ancient",
 		"There is an ancient key here.",
 		"The ancient skeleton key is carved with intricate patterns.",
-		NO,
+		YES,
 		YES,
 		19
 	},
@@ -120,7 +120,7 @@ struct item items[] = {
 		8,
 		"sign","wooden",
 		"There is a wooden sign near the cave entrance.",
-		"The sign says 'CAREFUL: DO NOT ENTER.'",
+		"The sign says 'DO NOT ENTER. THIS CAVE IS EMPTY.'",
 		NO,
 		NO,
 		9
@@ -169,6 +169,57 @@ struct item items[] = {
 		NO,
 		NO,
 		30
+	},
+	{
+		14,
+		"statue","stone",
+		"There is an enormous stone statue of a warrior blocking the path to the north.",
+		"The statue of the warrior is almost cylindrical, giving the impression that the\n"
+		"ancient warrior is a giant egg. He is holding a spear in his left hand and a\n"
+		"small, round shield in his right hand. There is an inscription that says:\n"
+		"ONLY THE BRAVE MAY PASS.",
+		NO,
+		NO,
+		24
+	},
+	{
+		15,
+		"kiosk","stone",
+		"There is a stone kiosk with a blue stone on top in the middle of the clearing.",
+		"The kiosk has a pyramid-shaped blue stone on top. There is a small flat hole near\n"
+		"the stone.",
+		NO,
+		NO,
+		18
+	},
+	{
+		16,
+		"kiosk","stone",
+		"There is a stone kiosk with a green stone on top in the middle of the clearing.",
+		"The kiosk has a sphere-shaped green stone on top. There is a small flat hole\n"
+		"near the stone.",
+		NO,
+		NO,
+		-1
+	},
+	{
+		17,
+		"kiosk","stone",
+		"There is a stone kiosk with a red stone on top in the middle of the clearing.",
+		"The kiosk has a rectangular red stone on top. There is a small flat hole near\n"
+		"the stone.",
+		NO,
+		NO,
+		-1
+	},
+	{
+		18,
+		"path","tunnel",
+		"There is an underground tunnel path that leads to the north.",
+		"You can enter the path by climbing down a ladder.",
+		NO,
+		NO,
+		-1
 	},
 
 	/* keep this last as a signal for the last item */

@@ -201,19 +201,29 @@ static struct room locations[] = {
 	},
 	{
 		18,
-		"Forest",
-		"Forest",
-		{19,-1,17,-1},
-		{"You walk north.",NULL,"You walk south.",NULL},
+		"Clearing in Forest",
+		"You are in a clearing in the forest. There are many stone podiums and columns in\n"
+		"the area. The stone structures are lined with carved symbols, but you do not\n"
+		"know what they mean. There is a path south that leads back into the woods.",
+		{-1,-1,17,-1},
+		{"You climb down the ladder and head north through the tunnel. At the end of the\n"
+		"tunnel is another ladder, which emerges into another clearing in the forest.",
+		NULL,"You walk south.",NULL},
 		NULL
 	},
 	{
 		19,
-		"Forest",
-		"Forest",
+		"North Clearing",
+		"You are in the middle of a clearing in the forest. There are several stone\n"
+		"podiums in area. Each of the podiums have intricate carvings lining them. This\n"
+		"must be a truly ancient area. There is a tunnel that leads south, and a path\n"
+		"that leads back into the woods to the north.",
 		{20,-1,18,-1},
-		{"You walk north.",NULL,"You walk south.",NULL},
-		NULL
+		{"You walk north.",NULL,
+		"You climb down the ladder and head south through the tunnel. At the end of the\n"
+		"tunnel is another ladder, which emerges into another clearing in the forest.",
+		NULL},
+		"You check all the podiums."
 	},
 	{
 		20,
@@ -251,7 +261,7 @@ static struct room locations[] = {
 		24,
 		"Forest",
 		"Forest",
-		{-1,25,23,-1},
+		{-1,-1,23,-1},
 		{NULL,"You walk east.","You walk south.",NULL},
 		NULL
 	},
