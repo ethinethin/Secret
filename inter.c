@@ -5,7 +5,7 @@
 #include "inter-even.h"
 #include "items.h"
 #include "rooms.h"
-static void one_word(int room, char *words);
+static void one_word(int room, char *word);
 static void two_words(int room, char *words[4]);
 static void three_words(int room, char *words[4]);
 static void four_words(int room, char *words[4]);

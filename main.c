@@ -36,7 +36,7 @@ static void exit_screen(void);
 
 /* game information */
 static const char *TITLE = "Secret in the Forest";
-static const char *ENGINE = "nag-20180701";
+static const char *ENGINE = "nag-20180702";
 
 /* main starting point for input loop */
 int main(void)
