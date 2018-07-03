@@ -35,7 +35,7 @@ struct item {
 	const char *item_desc_floor;
 	const char *item_desc_exam;
 	int hidden;
-	const int takeable;
+	int takeable;
 	int location;
 };
 
@@ -134,7 +134,43 @@ struct item items[] = {
 		YES,
 		2
 	},
+	{
+		10,
+		"lever","large",
+		"There is a large lever near the gate.",
+		"The lever looks large, heavy, and old.",
+		NO,
+		NO,
+		32
+	},
+	{
+		11,
+		"ladder","extended",
+		"There is an extended ladder propped up against the rockslide.",
+		"The ladder is secure enough to climb.",
+		NO,
+		NO,
+		-1
+	},
+	{
+		12,
+		"gate","locked",
+		"There is a locked gate blocking entrance to tower.",
+		"The gate is impassable, but there is a large keyhole in it.",
+		NO,
+		NO,
+		29
+	},
+	{
+		13,
+		"gate","locked",
+		"There is a locked gate blocking entrance to the tower.",
+		"The gate is impassible, but there is a large keyhole in it.",
+		NO,
+		NO,
+		30
+	},
 
 	/* keep this last as a signal for the last item */
-	{-1,"","","","",-1,-1,-1}
+	{-1,NULL,NULL,NULL,NULL,-1,-1,-1}
 };

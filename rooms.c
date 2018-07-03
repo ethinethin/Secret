@@ -51,7 +51,8 @@ extern void room_name(void)
 }
 
 /* provide room description */
-extern void look_room(void) {
+extern void look_room(void)
+{
 	printf("\n%s\n",locations[current_room].room_desc);
 	room_items(current_room);
 	printf("Exits:  ");
@@ -95,4 +96,20 @@ extern void move(char *direction)
 		printf("You cannot walk %s.\n",direction);
 	}
 
+}
+
+extern int search_desc(void)
+{
+	if (locations[current_room].search_desc != NULL) {
+		printf("%s ", locations[current_room].search_desc);
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
+
+extern void location_move(int room, int dir, int loc)
+{
+	locations[room].walk_to[dir] = loc;
 }

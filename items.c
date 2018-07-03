@@ -33,6 +33,7 @@
 #include <string.h>
 #include "items.h"
 #include "items-desc.h"
+#include "rooms.h"
 static void assign_name(char **word1, char **word2, char **adj, char **name);
 
 /* display items in room */
@@ -62,13 +63,18 @@ extern void search(int room_id)
 {
 	int i;
 	int count;
-	printf("\nYou carefully search the area. ");
+
+	putchar('\n');
+
+	if (search_desc())
+		printf("You carefully search the area. ");
+
 	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (items[i].location == room_id && items[i].hidden == YES) {
 			if (count > 0)
-				printf("You also found a ");
+				printf("You also found the ");
 			else
-				printf("You found a ");
+				printf("You found the ");
 			count++;
 			if (items[i].item_adj != NULL)
 				printf("%s ",items[i].item_adj);
@@ -90,7 +96,7 @@ extern void list_inv(void)
 {
 	int i;
 	int count;
-	
+
 	printf("\nInventory:\n");
 	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (inventory[i] == YES) {
@@ -161,9 +167,9 @@ extern void take_item(int room_id, char *word1, char *word2)
 	/* if none were found, the item is not present */
 	/* if only one was found, it's not ambiguous */
 	if (item_num == -1) {
-		printf("There is no '");
+		printf("There is no ");
 		if (adj != NULL) printf("%s ",adj);
-		printf("%s' here.\n",name);
+		printf("%s here.\n",name);
 		return;
 	} else if (item_num == -2) {
 		printf("Which %s do you want to take?\n",name);
@@ -238,9 +244,9 @@ extern void drop_item(int room_id, char *word1, char *word2)
 	/* if none were found, the item is not in inventory */
 	/* if only one was found, it's not ambiguous */
 	if (item_num == -1) {
-		printf("You do not have a '");
+		printf("You do not have a ");
 		if (adj != NULL) printf("%s ",adj);
-		printf("%s'.\n",name);
+		printf("%s.\n",name);
 		return;
 	} else if (item_num == -2) {
 		printf("Which %s do you want to drop?\n",name);
@@ -283,13 +289,25 @@ extern void look_item(int room_id, char *word1, char *word2)
 		printf("Which %s?\n",name);
 		return;
 	} else if (item_num1 == -1 && item_num2 == -1) {
-		printf("There is no '");
+		printf("There is no ");
 		if (adj != NULL) printf("%s ",adj);
-		printf("%s' here.\n",name);
+		printf("%s here.\n",name);
 		return;
 	} else if (item_num1 == -1) {
 		item_num1 = item_num2;
 	}
 
 	printf("%s\n",items[item_num1].item_desc_exam);
+}
+
+extern void break_item(int item_id)
+{
+	inventory[item_id] = 0;
+	items[item_id].location = -1;
+}
+
+
+extern void create_item(int item_id, int room_id)
+{
+	items[item_id].location = room_id;
 }

@@ -122,7 +122,7 @@ static int parse_input(char *line)
 	}
 
 	/* item functions */
-	else if (strcmp(*words,"take") == 0) {
+	else if (strcmp(*words,"take") == 0 || strcmp(*words,"get") == 0) {
 		if (*(words+1) != NULL && strcmp(*(words+1),"the") == 0) {
 			take_item(room_id(), *(words+2), *(words+3));
 		} else {
