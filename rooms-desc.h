@@ -90,10 +90,11 @@ static struct room locations[] = {
 		5,
 		"Upstairs at the Inn",
 		"You are in a hallway on the second floor of the inn. There are four rooms here.\n"
-		"All the doors are currently closed. A staircase leads downstairs to the south.",
+		"All the doors are currently closed. There are tables standing next to the doors\n"
+		"with assorted object and letters. A staircase leads downstairs to the south.",
 		{-1,-1,4,-1},
 		{NULL,NULL,"You walk down the stairs.",NULL},
-		NULL
+		"You stealthily inspect the items on the tables."
 	},
 	{
 		6,
@@ -250,8 +251,9 @@ static struct room locations[] = {
 	},
 	{
 		21,
-		"Forest",
-		"Forest",
+		"Forest Path",
+		"You are walking through the forest. Dense underbrush is all around, but you are\n"
+		"on a clear footpath that runs east and west.",
 		{-1,22,-1,15},
 		{NULL,"You walk east.",NULL,"You walk west."},
 		NULL
@@ -267,35 +269,42 @@ static struct room locations[] = {
 	},
 	{
 		23,
-		"Forest",
-		"Forest",
+		"The Familiar Copse",
+		"You are walking along a path in the forest. The path runs north and south. The\n"
+		"path is split in the middle by a grassy patch with four trees growing closely\n"
+		"together.",
 		{24,-1,22,-1},
 		{"You walk north.",NULL,"You walk south.",NULL},
 		NULL
 	},
 	{
 		24,
-		"Forest",
-		"Forest",
+		"Dark Forest",
+		"You are in a dark portion of the forest where the trees are blocking out light\n"
+		"from the sky. There is dense underbrush that makes it very hard to see through\n"
+		"the trees, but there is a footpath that runs south and east.",
 		{-1,-1,23,-1},
 		{NULL,"You walk east.","You walk south.",NULL},
 		NULL
 	},
 	{
 		25,
-		"Forest",
-		"Forest",
+		"Dark Forest",
+		"You are on a path through the forest that runs west and north. The trees all\n"
+		"around you are thick and hard to see through, and the air feels very still. You\n"
+		"can't see anything east or south, only darkness.",
 		{26,-1,-1,24},
 		{"You walk north.",NULL,NULL,"You walk west."},
 		NULL
 	},
 	{
 		26,
-		"Thicket Crossroads",
+		"Thicket Dead End",
 		"You are walking in the forest. The forest path from the south seems to end here,\n"
 		"with dense overgrowth in all other directions.",
-		{27,22,25,17},
-		{"You walk into the north thicket. The thicket clears and you find the path again.",
+		{27,23,25,17},
+		{"You walk into the north thicket. You get lost in the forest for awhile, but the\n"
+		"thicket clears and you find a the footpath again.",
 		"You walk into the east thicket. You get lost in the forest for awhile.",
 		"You walk south.",
 		"You walk into the west thicket. You get lost in the forest for awhile."},
@@ -303,29 +312,34 @@ static struct room locations[] = {
 	},
 	{
 		27,
-		"Forest",
-		"Forest",
+		"Light Forest",
+		"You are walking in a light section of the forest. The trees have thinned out\n"
+		"here. To the south, you see a dense thicket of trees. A path leads to the north,\n"
+		"where you see a mountain rising above the trees.",
 		{28,-1,26,-1},
 		{"You walk north.",NULL,"You walk south.",NULL},
 		NULL
 	},
 	{
 		28,
-		"Forest Near the Tower",
-		"You are walking along a forest path, which runs west and south from here. There\n"
-		"is a mountain to the north, and large tower to the west which connects to the\n"
-		"bluff at the top of mountain. You see carved alcoves in the mountain.",
+		"Light Forest Near the Tower",
+		"You are walking along a forest path, which runs south and west from here. There\n"
+		"is a mountain with small, carved alcoves that blocks the way to the north. The\n"
+		"path leads west to a large tower to the west which leads up to a bluff at the\n"
+		"top the mountain.",
 		{-1,-1,27,29},
 		{NULL,NULL,"You walk south.","You walk west."},
 		"You inspect the inside of the alcoves."
 	},
 	{
 		29,
-		"Forest",
-		"Forest",
+		"Base of the Tower",
+		"You are standing at the base of a large tower that leads to the top of the\n"
+		"mountain bluff, which you can enter to the west. There are small, carved alcoves\n"
+		"in the mountains to the north. A path leads into the forest to the east.",
 		{-1,28,-1,-1},
 		{NULL,"You walk east.",NULL,"You enter the tower and ascend the steps."},
-		NULL
+		"You inspect the inside of the alcoves."
 	},
 	{
 		30,
@@ -343,7 +357,9 @@ static struct room locations[] = {
 	{
 		31,
 		"Twisting Path",
-		"Twisting Path",
+		"You are walking on a twisting, cobblestone path that runs north and south. To\n"
+		"the north, you see a giant stone gate. To the south is a tower and bluff that\n"
+		"overlooks the forest.",
 		{32,-1,30,-1},
 		{"You walk north.",NULL,"You walk south.",NULL},
 		NULL
@@ -351,7 +367,9 @@ static struct room locations[] = {
 	{
 		32,
 		"The Stone Gate",
-		"The Stone Gate",
+		"You are at the northmost part of a twisting cobblestone path. There is a giant\n"
+		"stone gate that leads to the north. The gate looks old, like it was built many\n"
+		"centuries ago.",
 		{-1,-1,31,-1},
 		{"You walk through the gate.",NULL,"You walk south.",NULL},
 		NULL
@@ -359,9 +377,11 @@ static struct room locations[] = {
 	{
 		33,
 		"Hidden Temple",
-		"Hidden Temple",
+		"You enter an ancient temple. Tall stone walls rise up around you on all sides,\n"
+		"no ceiling. There is a two-story tall gold throne sitting beside the north wall.",
 		{-1,-1,32,-1},
 		{NULL,NULL,"You exit through the gate.",NULL},
-		NULL
+		"You walk around the temple, look behind the throne, and even crawl between the\n"
+		"statue's legs, looking for treasure."
 	},
 };

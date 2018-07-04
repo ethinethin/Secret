@@ -59,7 +59,7 @@ static void assign_name(char **word1, char **word2, char **adj, char **name)
 }
 
 /* inventory stuff */
-static char inventory[100] = {NO};
+static char inventory[100] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 /* search for hidden items */
 extern void search(int room_id)
@@ -75,7 +75,7 @@ extern void search(int room_id)
 	for (count = 0, i = 0; items[i].item_id != -1; i++) {
 		if (items[i].location == room_id && items[i].hidden == YES) {
 			if (count > 0)
-				printf("You also found the ");
+				printf("\nYou also found the ");
 			else
 				printf("You found the ");
 			count++;

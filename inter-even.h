@@ -59,38 +59,40 @@ struct event {
 static struct event interactions[] = {
 	/* lever to hidden temple */
 	{0,11,-1,32,YES,OPEN,NORTH,32,33,1,YES,
-		"The large gate rumbles loudly as it opens."},
+		"You put all your strength into moving the lever. It finally moves and the large\n"
+		"gate clanks and rumbles loudly as it slides opens. You can now travel north!"},
 	{1,11,-1,32,NO,OPEN,NORTH,32,-1,0,YES,
-		"The large gate quickly crashes down with a clatter. The way is blocked!"},
+		"The lever is surprisingly easy to move. As soon as you touch it, the large gate\n"
+		"quickly crashes down with a clatter. The way north is blocked!"},
 
 	/* hammer breaking wall in cave */
 	{2,18,-1,12,YES,BREAK,WEST,18,-1,3,NO,
-		"You smash the hammer against the west wall. It opened up a path you can crawl"},
-	{3,18,-1,12,NO,OPEN,WEST,12,13,-1,YES,
+		"You smash the hammer against the west wall. It opened up a path you can crawl\n"
 		"through! But the hammer is now broken and useless. You throw it away."},
+	{3,18,-1,12,NO,OPEN,WEST,12,13,-1,YES,NULL},
 
 	/* ladder used for climbing rockslide */
 	{4,19,-1,20,YES,BREAK,EAST,19,-1,5,NO,
-		"You unfold the ladder and place it on the steep rockslide to the east. It looks"},
-	{5,19,-1,20,NO,CREATE,EAST,8,20,6,NO,
-		"like you can climb up it, but you give it a shake to make sure it is secure"},
-	{6,19,-1,20,NO,OPEN,EAST,20,30,-1,YES,
+		"You unfold the ladder and place it on the steep rockslide to the east. It looks\n"
+		"like you can climb up it, but you give it a shake to make sure it is secure\n"
 		"enough to climb. You can now travel east!"},
+	{5,19,-1,20,NO,CREATE,EAST,8,20,6,NO,NULL},
+	{6,19,-1,20,NO,OPEN,EAST,20,30,-1,YES,NULL},
 
 	/* open gate east side */
 	{7,20,9,29,YES,BREAK,WEST,20,-1,8,NO,
-		"You slide the key into the keyhole in the gate. As you turn, it clicks loudly."},
-	{8,20,9,29,NO,BREAK,WEST,9,-1,9,NO,
-		"The gate swings open, allowing you to ascend the tower to the west!"},
+		"You slide the key into the keyhole in the gate. As you turn it, it clicks\n"
+		"loudly. The gate swings open, allowing you to ascend the tower to the west!"},
+	{8,20,9,29,NO,BREAK,WEST,9,-1,9,NO,NULL},
 	{9,20,9,29,NO,OPEN,WEST,29,30,10,NO,NULL},
 	{10,20,9,29,NO,OPEN,EAST,30,29,11,NO,NULL},
 	{11,20,9,29,NO,BREAK,WEST,10,-1,-1,YES,NULL},
 
 	/* open gate west side */
 	{12,20,10,30,YES,BREAK,WEST,20,-1,13,NO,
-		"You slide the key into the keyhole in the gate. As you turn, it clicks loudly."},
-	{13,20,10,30,NO,BREAK,WEST,10,-1,14,NO,
-		"The gate swings open, allowing you to descend the tower to the east!"},
+		"You slide the key into the keyhole in the gate. As you turn it, it clicks\n"
+		"loudly. The gate swings open, allowing you to ascend the tower to the east!"},
+	{13,20,10,30,NO,BREAK,WEST,10,-1,14,NO,NULL},
 	{14,20,10,30,NO,OPEN,WEST,29,30,15,NO,NULL},
 	{15,20,10,30,NO,OPEN,EAST,30,29,16,NO,NULL},
 	{16,20,10,30,NO,BREAK,WEST,9,-1,-1,YES,NULL},
@@ -142,13 +144,41 @@ static struct event interactions[] = {
 	{32,16,0,6,NO,CREATE,EAST,1,6,-1,YES,NULL},
 	
 	/* trying to use the wrong coins */
-	{33,14,4,18,YES,STORY,NORTH,-1,-1,33,YES,"The green coin does not fit into the blue slot."},
-	{34,15,4,18,YES,STORY,NORTH,-1,-1,34,YES,"The red coin does not fit into the blue slot."},
-	{35,15,5,18,YES,STORY,NORTH,-1,-1,35,YES,"The red coin does not fit into the green slot."},
+	{33,14,4,18,YES,STORY,NORTH,0,-1,33,YES,"The green coin does not fit into the blue slot."},
+	{34,15,4,18,YES,STORY,NORTH,0,-1,34,YES,"The red coin does not fit into the blue slot."},
+	{35,15,5,18,YES,STORY,NORTH,0,-1,35,YES,"The red coin does not fit into the green slot."},
 	
 	/* attacking the blacksmith */
-	{36,17,1,6,YES,STORY,EAST,-1,-1,36,YES,"You shouldn't do that."},
-	{37,18,0,6,YES,STORY,EAST,-1,-1,37,YES,"You shouldn't do that."},
+	{36,17,1,6,YES,STORY,EAST,0,-1,36,YES,"You shouldn't do that."},
+	{37,18,0,6,YES,STORY,EAST,0,-1,37,YES,"You shouldn't do that."},
+
+	/* bad ending - give scepter to bird-man statue */
+	{38,22,12,33,YES,OPEN,SOUTH,33,-1,40,YES,
+		"As you approach the bird-man statue with the scepter, you see his eyes gleam red\n"
+		"for a moment. A loud crashing is heard behind you and the gate has closed! You\n"
+		"are still holding the scepter..."},
+	{39,22,12,33,YES,STORY,SOUTH,-2,-1,-1,YES,
+		"You place the scepter into the empty hand of the statue. As soon as you do, his\n"
+		"eyes and the gem in the scepter gleam bright red. Supernaturally fast, he stands\n"
+		"up, knocking you back.\n\n"
+		"\"AT LAST, I HAVE BEEN RELEASED FROM MY SLUMBER. THE WORLD WILL NOW SUFFER. THE\n"
+		"WORLD WILL NOW BE MINE!\"\n\n"
+		"He walks towards the western wall and climbs over it in a quick motion, leaving\n"
+		"you behind in the Hidden Temple."},
+
+	/* good ending - use sword on bird-man statue */
+	{40,17,12,33,YES,OPEN,SOUTH,33,-1,38,YES,
+		"You approach the bird-man statue, brandishing the sword. His eyes gleam red for\n"
+		"a moment - a warning? A loud crashing is heard behind you and the gate has\n"
+		"closed! Are you sure this is a good idea?"},
+	{41,17,12,33,YES,STORY,SOUTH,-3,-1,-1,YES,
+		"You raise the sword and lower it with a crash onto the statue. As you are about\n"
+		"to strike, the statue supernaturally moves to defend itself, resulting in you\n"
+		"accidentally striking the ruby in its right hand. Both the sword and the ruby\n"
+		"explode into a million pieces!\n\n"
+		"As soon as the ruby is destroyed, the statue crumbles to the floor and melts\n"
+		"away before your eyes. A hidden chamber behind the throne slowly opens to reveal\n"
+		"mountains of gold and treasure, and the large gate to the temple opens!"},
 	
 	/* keep this to signal no more interactions: */
 	{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,NULL}

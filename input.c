@@ -39,6 +39,10 @@ static int parse_input(char *line);
 static int is_okay_quit(void);
 static void completion(const char *buf, linenoiseCompletions *lc);
 static void display_help(void);
+static void quit_screen(void);
+static void bad_ending(void);
+static void good_ending(void);
+int GAME_STATUS;
 
 /* main input loop */
 extern void input_loop(void)
@@ -49,6 +53,7 @@ extern void input_loop(void)
 	/* Start in room 0 and show it */
 	room_name();
 	look_room();
+	GAME_STATUS = 0;
 
 	/* set up tab completion */
 	linenoiseSetCompletionCallback(completion);
@@ -58,8 +63,16 @@ extern void input_loop(void)
 		if (line[0] != '\0') {
 			linenoiseHistoryAdd(line);
 			status = parse_input(line);
-			if (status)
+			if (GAME_STATUS == -1) {
+				quit_screen();
 				break;
+			} else if (GAME_STATUS == -2) {
+				bad_ending();
+				break;
+			} else if (GAME_STATUS == -3) {
+				good_ending();
+				break;
+			}
 		}
 		free(line);
 	}
@@ -92,7 +105,7 @@ static int parse_input(char *line)
 	
 	/* user quit */
 	else if (strcmp(*words,"quit") == 0 || strcmp(*words,"exit") == 0 || strcmp(*words,"q") == 0) {
-		return is_okay_quit();
+		if (is_okay_quit()) GAME_STATUS = -1;
 	}
 
 	/* user help */
@@ -229,7 +242,7 @@ void completion(const char *buf, linenoiseCompletions *lc) {
 	}
 }
 
-void display_help(void)
+static void display_help(void)
 {
 	printf("\n--------------------------------------------------------------------------------\n");
 	printf("HOW TO PLAY\n");
@@ -249,4 +262,45 @@ void display_help(void)
 	printf("\tsearch - look for hidden objects\n");
 	printf("\tuse - use an item or items\n");
 	printf("--------------------------------------------------------------------------------\n");
+	printf("TO QUIT\n");
+	printf("\tquit - give up in your search and go home.\n");
+	printf("--------------------------------------------------------------------------------\n");
+}
+
+/* Displayed upon exiting the game */
+static void quit_screen(void)
+{
+	printf("\n--------------------------------------------------------------------------------\n");
+	printf("GAME OVER: The mystery of the forest remains unsolved!\n");
+	printf("--------------------------------------------------------------------------------\n\n");
+}
+
+/* bad ending */
+static void bad_ending(void)
+{
+	printf("\n--------------------------------------------------------------------------------\n");
+	printf("YOU GOT THE BAD ENDING\n");
+	printf("--------------------------------------------------------------------------------\n");
+	printf("How could you have known you were going to release an ancient horror upon the\n");
+	printf("people of the world? Nobody can really blame you, but as the giant statue\n");
+	printf("rampages across the world, killing all who oppose him, subjugating everyone\n");
+	printf("else, you are trapped in the Hidden Temple with no way out.\n");
+	printf("--------------------------------------------------------------------------------\n");
+	printf("GAME OVER: BETTER LUCK NEXT TIME!\n");
+	printf("--------------------------------------------------------------------------------\n\n");
+}
+
+/* good ending */
+static void good_ending(void)
+{
+	printf("\n--------------------------------------------------------------------------------\n");
+	printf("YOU GOT THE GOOD ENDING\n");
+	printf("--------------------------------------------------------------------------------\n");
+	printf("You have solved the secret of the Hidden Temple! By destroying the giant statue,\n");
+	printf("you have uncovered a cache of riches beyond your wildest dreams! What will you\n");
+	printf("do with your newfound wealth? Become a king? Become a god? The choice is up to\n");
+	printf("you! But first, you need to find a cart...\n");
+	printf("--------------------------------------------------------------------------------\n");
+	printf("CONGRATULATIONS!\n");
+	printf("--------------------------------------------------------------------------------\n\n");
 }

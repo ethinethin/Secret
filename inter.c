@@ -10,11 +10,21 @@ static void two_words(int room, char *words[4]);
 static void three_words(int room, char *words[4]);
 static void four_words(int room, char *words[4]);
 static void interact(int room, int item1, int item2);
+extern int GAME_STATUS;
 
-/* use item function
- *	This is a disgusting function to read, because of the large number
- *	of possible ways a user can input a use command. I have split it up
- *	into chunks to make it slightly more readable.
+/* use item word parsing:
+ *	This is a disgusting couple of functions to read, because of the large
+ *	number of possible ways a user can input a use command. I have split it
+ *	up into chunks based on how many words are entered to make it slightly
+ *      more readable. But beware, this is a mess of spaghetti code. Also, for
+ *	now, "four_words" assumes the user is using two adjectives and two
+ *	nouns, which could be made better.
+ *
+ *	If I were to rewrite this, I would try to interpret it word by word. For
+ *	example, start with word 1: if it's a unique item, move to the next. If
+ *	it's not, move to the next and try word 1 and 2 as a word pair. Etc. I
+ *	would also write a unique_item function in items.c to reduce a lot of
+ *	repetitive code from here.
  */
 extern void use(char *input[8])
 {
@@ -217,7 +227,9 @@ static void interact(int room, int item1, int item2)
 				break_item(interactions[i].event_attr1);
 			} else if (interactions[i].event_type == CREATE) {
 				create_item(interactions[i].event_attr1, interactions[i].event_attr2);
-			} 	
+			} else if (interactions[i].event_type == STORY) {
+				GAME_STATUS = interactions[i].event_attr1;
+			}
 
 			/* print description */
 			if (interactions[i].event_desc != NULL)
@@ -225,7 +237,10 @@ static void interact(int room, int item1, int item2)
 			/* deactivate current event, and activate linked event if necessary */
 			interactions[i].triggerable = NO;
 			if (interactions[i].event_link != -1) {
-				interactions[interactions[i].event_link].triggerable = YES;
+				if (interactions[interactions[i].event_link].triggerable == YES)
+					interactions[interactions[i].event_link].triggerable = NO;
+				else
+					interactions[interactions[i].event_link].triggerable = YES;
 			}
 
 			/* if you don't want to chain together events, quit now */

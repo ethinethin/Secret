@@ -32,11 +32,10 @@
 #include "input.h"
 int main(void);
 static void splash_screen(void);
-static void exit_screen(void);
 
 /* game information */
 static const char *TITLE = "Secret in the Forest";
-static const char *ENGINE = "nag-20180702";
+static const char *ENGINE = "nag-20180703";
 
 /* main starting point for input loop */
 int main(void)
@@ -45,8 +44,7 @@ int main(void)
 	splash_screen();
 	/* Go to input loop */
 	input_loop();
-	/* exiting */
-	exit_screen();
+	/* exit normally */
 	return 0;
 }
 
@@ -63,10 +61,4 @@ void splash_screen(void)
 	printf("To learn how to play, type: help\n");
 	printf("--------------------------------------------------------------------------------\n");
 
-}
-
-/* Displayed upon exiting the game */
-void exit_screen(void)
-{
-	printf("\nThe mystery of the forest remains unsolved!\n\n");
 }

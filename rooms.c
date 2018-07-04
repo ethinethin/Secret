@@ -34,6 +34,7 @@
 #include "rooms.h"
 #include "rooms-desc.h"
 #include "items.h"
+static void room_exits(void);
 
 /* room variable - start in room 0 */
 static int current_room = 0;
@@ -55,11 +56,22 @@ extern void look_room(void)
 {
 	printf("\n%s\n",locations[current_room].room_desc);
 	room_items(current_room);
+	room_exits();
+}
+
+static void room_exits(void)
+{
+	int i;
+	int count;
+	char *dirs[4] = {"north","east","south","west"};
 	printf("Exits:  ");
-	if (locations[current_room].walk_to[0] != -1) printf("north  ");
-	if (locations[current_room].walk_to[1] != -1) printf("east  ");
-	if (locations[current_room].walk_to[2] != -1) printf("south  ");
-	if (locations[current_room].walk_to[3] != -1) printf("west  ");
+	for (count = 0, i = 0; i < 4; i++) {
+		if (locations[current_room].walk_to[i] != -1) {
+			printf("%s  ",dirs[i]);
+			count++;
+		}
+	}
+	if (count == 0) printf("none");
 	putchar('\n');
 }
 

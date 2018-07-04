@@ -136,7 +136,7 @@ struct item items[] = {
 	{
 		9,
 		"gate","locked",
-		"There is a locked gate blocking entrance to tower.",
+		"There is a locked gate blocking the lower entrance to tower.",
 		"The gate is impassable, but there is a large keyhole in it.",
 		NO,
 		NO,
@@ -145,7 +145,7 @@ struct item items[] = {
 	{
 		10,
 		"gate","locked",
-		"There is a locked gate blocking entrance to the tower.",
+		"There is a locked gate blocking the upper entrance to the tower.",
 		"The gate is impassible, but there is a large keyhole in it.",
 		NO,
 		NO,
@@ -162,9 +162,11 @@ struct item items[] = {
 	},
 	{
 		12,
-		"placeholder","whatever",
-		"There is a placeholder here.",
-		"Use your imagination.",
+		"statue","golden",
+		"There is a golden statue of a bird-man sitting on the throne. He looks like an\n"
+		"ancient god, with large golden wings and a feathered headdress. His right hand\n"
+		"holds an egg-shaped ruby, and his grasping left hand is empty.",
+		"The giant bird-man statue sits silently on the throne.",
 		NO,
 		NO,
 		33
