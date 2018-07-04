@@ -35,7 +35,7 @@
 #include "rooms.h"
 #include "items.h"
 #include "inter.h"
-static int parse_input(char *line);
+static void parse_input(char *line);
 static int is_okay_quit(void);
 static void completion(const char *buf, linenoiseCompletions *lc);
 static void display_help(void);
@@ -47,7 +47,6 @@ int GAME_STATUS;
 /* main input loop */
 extern void input_loop(void)
 {
-	int status;
 	char *line;
 
 	/* Start in room 0 and show it */
@@ -62,7 +61,7 @@ extern void input_loop(void)
 	while(putchar('\n') && (line = linenoise("command> ")) != NULL) {
 		if (line[0] != '\0') {
 			linenoiseHistoryAdd(line);
-			status = parse_input(line);
+			parse_input(line);
 			if (GAME_STATUS == -1) {
 				quit_screen();
 				break;
@@ -79,7 +78,7 @@ extern void input_loop(void)
 }
 
 /* parse input and direct commands */
-static int parse_input(char *line)
+static void parse_input(char *line)
 {
 	int i;
 	char allwords[100];
@@ -100,7 +99,7 @@ static int parse_input(char *line)
 
 	/* parse input */
 	if (*words == NULL) {
-		return 0;
+		return;
 	}
 	
 	/* user quit */
@@ -176,8 +175,6 @@ static int parse_input(char *line)
 		}
 		printf("'.\n");
 	}
-
-	return 0;
 }
 
 static int is_okay_quit(void)
