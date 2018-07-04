@@ -76,8 +76,8 @@ struct item items[] = {
 	{
 		3,
 		"statue","stone",
-		"There is an enormous stone statue of a warrior blocking the path to the north.",
-		"The statue of the warrior is almost cylindrical, giving the impression that the\n"
+		"There is an enormous stone statue of a warrior blocking the path to the east.",
+		"The statue of the warrior is an elongated sphere, giving the impression that the\n"
 		"ancient warrior is a giant egg. He is holding a spear in his left hand and a\n"
 		"small, round shield in his right hand. There is an inscription that says:\n"
 		"ON Y TH  BR VE MA   ASS.",

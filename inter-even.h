@@ -49,6 +49,7 @@ struct event {
 #define OPEN 0
 #define BREAK 1
 #define CREATE 2
+#define STORY 3
 
 #define NORTH 0
 #define EAST 1
@@ -138,8 +139,17 @@ static struct event interactions[] = {
 		"You are impressed with the quality of the sword and think it is an even trade.\n"
 		"The blacksmith takes the statuette and places the sword on the counter."},
 	{31,16,0,6,NO,BREAK,EAST,0,6,32,NO,NULL},
-	{31,16,0,6,NO,CREATE,EAST,1,6,-1,YES,NULL},
-
+	{32,16,0,6,NO,CREATE,EAST,1,6,-1,YES,NULL},
+	
+	/* trying to use the wrong coins */
+	{33,14,4,18,YES,STORY,NORTH,-1,-1,33,YES,"The green coin does not fit into the blue slot."},
+	{34,15,4,18,YES,STORY,NORTH,-1,-1,34,YES,"The red coin does not fit into the blue slot."},
+	{35,15,5,18,YES,STORY,NORTH,-1,-1,35,YES,"The red coin does not fit into the green slot."},
+	
+	/* attacking the blacksmith */
+	{36,17,1,6,YES,STORY,EAST,-1,-1,36,YES,"You shouldn't do that."},
+	{37,18,0,6,YES,STORY,EAST,-1,-1,37,YES,"You shouldn't do that."},
+	
 	/* keep this to signal no more interactions: */
 	{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,NULL}
 };

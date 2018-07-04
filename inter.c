@@ -217,7 +217,7 @@ static void interact(int room, int item1, int item2)
 				break_item(interactions[i].event_attr1);
 			} else if (interactions[i].event_type == CREATE) {
 				create_item(interactions[i].event_attr1, interactions[i].event_attr2);
-			}
+			} 	
 
 			/* print description */
 			if (interactions[i].event_desc != NULL)

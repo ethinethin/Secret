@@ -58,6 +58,9 @@ static void assign_name(char **word1, char **word2, char **adj, char **name)
 	}
 }
 
+/* inventory stuff */
+static char inventory[100] = {NO};
+
 /* search for hidden items */
 extern void search(int room_id)
 {
@@ -80,6 +83,8 @@ extern void search(int room_id)
 				printf("%s ",items[i].item_adj);
 			printf("%s! ",items[i].item_name);
 			items[i].hidden = NO;
+			items[i].location = -1;
+			inventory[i] = 1;
 		}
 	}
 	if (count == 0)
@@ -88,8 +93,6 @@ extern void search(int room_id)
 		putchar('\n');
 }
 
-/* inventory stuff */
-static char inventory[100] = {NO};
 
 /* display items in inventory */
 extern void list_inv(void)
