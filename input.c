@@ -260,7 +260,7 @@ static void display_help(void)
 	printf("\tuse - use an item or items\n");
 	printf("--------------------------------------------------------------------------------\n");
 	printf("TO QUIT\n");
-	printf("\tquit - give up in your search and go home.\n");
+	printf("\tquit - give up in your search and go home\n");
 	printf("--------------------------------------------------------------------------------\n");
 }
 
