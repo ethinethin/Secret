@@ -179,7 +179,12 @@ static struct event interactions[] = {
 		"As soon as the ruby is destroyed, the statue crumbles to the floor and melts\n"
 		"away before your eyes. A hidden chamber behind the throne slowly opens to reveal\n"
 		"mountains of gold and treasure, and the large gate to the temple opens!"},
-	
+
+	/* hamburger */
+	{42,21,0,6,YES,STORY,NORTH,0,-1,42,YES,"He doesn't want to eat that."},
+	{43,21,1,6,YES,STORY,NORTH,0,-1,43,YES,"He doesn't want to eat that."},
+	{44,21,12,33,YES,STORY,NORTH,0,-1,44,YES,"He doesn't want to eat that."},
+	{45,21,3,24,YES,STORY,NORTH,0,-1,45,YES,"He doesn't want to eat that."},
 	/* keep this to signal no more interactions: */
 	{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,NULL}
 };
