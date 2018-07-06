@@ -1,12 +1,76 @@
+================================================================================
+
 Secret in the Forest
 
 A text adventure engine written in C by Easter <ethinethin@gmail.com>
 
-Currently a work in progress
+================================================================================
 
-Completed:
-- navigation
-- items
-- interactions
+TO INSTALL
 
-This is now a finished game, with multiple puzzles and endings!
+GNU/Linux, Mac OS, or similar:
+
+Use the git command line tool to download, and make to compile:
+
+% git clone https://github.com/ethinethin/Secret
+% cd Secret
+% make
+% ./Secret
+
+Windows:
+
+Install Cygwin with git, gcc, and make, then follow the above instructions. The
+binary will be called Secret.exe.
+
+================================================================================
+
+ABOUT THE ENGINE
+
+This is a text adventure game engine, and comes with a finished game that is
+immediately playable. Features in the game (all viewable on the help screen)
+include:
+	walk		navigate around the world
+	look		examine surroundings or item
+	search		find hidden items
+	take		pick up item
+	drop		drop item
+	use		use item or items
+
+================================================================================
+
+MODIFYING
+
+I encourage you to fork and modify the game engine with no restrictions besides
+BSD 3-clause licensing terms (see LICENSE file). This is a key to the files used
+for different functions. Most .c files are paired with a .h file with the same
+name for function prototypes.
+
+	main.c 		Splash screen, enter input loop
+	input.c 	Input loop, command parsing, tab completion, endings
+	rooms.c 	Navigation of rooms
+	rooms-desc.h 	Room descriptions
+	items.c 	Take, drop, inventory, and other item functions
+	items-desc.h 	Item descriptions
+	inter.c 	Interaction (use) parsing and functions
+	inter-even.h 	Interaction events 
+
+If you want to write your own game without modifying the engine, the main files
+you should edit are main.c (splash screen), input.c (endings), rooms-desc.h,
+items-desc.h, and inter-even.h. The structs are fairly self-explanatory, but I
+recommend playing through the game as is to better understand the events.
+
+You are also free to modify any code to add or remove features.
+
+================================================================================
+
+ABOUT ME
+
+This was an educational project for myself to learn how to write a program from
+scratch in C. I thought there is a proud tradition of old-fashioned text games
+written in C, so why not try to write one myself? This is also my second attempt
+at this project, and I corrected a lot of the mistakes I made in the old
+version.
+
+If you want to contact me, email me at ethinethin@gmail.com 
+
+================================================================================
