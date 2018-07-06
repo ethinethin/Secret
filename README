@@ -29,6 +29,7 @@ ABOUT THE ENGINE
 This is a text adventure game engine, and comes with a finished game that is
 immediately playable. Features in the game (all viewable on the help screen)
 include:
+
 	walk		navigate around the world
 	look		examine surroundings or item
 	search		find hidden items
@@ -36,14 +37,17 @@ include:
 	drop		drop item
 	use		use item or items
 
+In the game are 33 rooms, 22 items, and 45 interactions. I recommend playing it
+before modifying the code.
+
 ================================================================================
 
 MODIFYING
 
 I encourage you to fork and modify the game engine with no restrictions besides
-BSD 3-clause licensing terms (see LICENSE file). This is a key to the files used
-for different functions. Most .c files are paired with a .h file with the same
-name for function prototypes.
+BSD 3-clause licensing terms (see LICENSE file). Below is a key to the files
+used for different functions. Most .c files are paired with a .h file with the
+same name for function prototypes.
 
 	main.c 		Splash screen, enter input loop
 	input.c 	Input loop, command parsing, tab completion, endings
