@@ -49,14 +49,14 @@ BSD 3-clause licensing terms (see LICENSE file). Below is a key to the files
 used for different functions. Most .c files are paired with a .h file with the
 same name for function prototypes.
 
-	main.c 		Splash screen, enter input loop
-	input.c 	Input loop, command parsing, tab completion, endings
-	rooms.c 	Navigation of rooms
-	rooms-desc.h 	Room descriptions
-	items.c 	Take, drop, inventory, and other item functions
-	items-desc.h 	Item descriptions
-	inter.c 	Interaction (use) parsing and functions
-	inter-even.h 	Interaction events 
+	main.c             Splash screen, enter input loop
+	input.c            Input loop, command parsing, tab completion, endings
+	rooms.c            Navigation of rooms
+	rooms-desc.h       Room descriptions
+	items.c            Take, drop, inventory, and other item functions
+	items-desc.h       Item descriptions
+	inter.c            Interaction (use) parsing and functions
+	inter-even.h       Interaction events 
 
 If you want to write your own game without modifying the engine, the main files
 you should edit are main.c (splash screen), input.c (endings), rooms-desc.h,
