@@ -35,6 +35,9 @@
 #include "items-desc.h"
 #include "rooms.h"
 static void assign_name(char **word1, char **word2, char **adj, char **name);
+static int in_room(int room_id, char *adj, char *name);
+static int in_inv(char *adj, char *name);
+
 
 /* display items in room */
 extern void room_items(int room_id)
@@ -115,7 +118,7 @@ extern void list_inv(void)
 }
 
 /* in inventory */
-extern int in_room(int room_id, char *adj, char *name)
+static int in_room(int room_id, char *adj, char *name)
 {
 	int i;
 	int item_num;
@@ -192,7 +195,7 @@ extern void take_item(int room_id, char *word1, char *word2)
 	}
 }
 
-extern int in_inv(char *adj, char *name)
+static int in_inv(char *adj, char *name)
 {
 	int i;
 	int item_num;
