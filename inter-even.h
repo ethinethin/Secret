@@ -155,8 +155,8 @@ static struct event interactions[] = {
 	/* bad ending - give scepter to bird-man statue */
 	{38,22,12,33,YES,OPEN,SOUTH,33,-1,40,YES,
 		"As you approach the bird-man statue with the scepter, you see his eyes gleam red\n"
-		"for a moment. A loud crashing is heard behind you and the gate has closed! You\n"
-		"are still holding the scepter..."},
+		"for a moment - a warning? A loud crashing is heard behind you and the gate has\n"
+		"closed! You are still holding the scepter... are you sure this is a good idea?"},
 	{39,22,12,33,YES,STORY,SOUTH,-2,-1,-1,YES,
 		"You place the scepter into the empty hand of the statue. As soon as you do, his\n"
 		"eyes and the gem in the scepter gleam bright red. Supernaturally fast, he stands\n"
@@ -170,7 +170,7 @@ static struct event interactions[] = {
 	{40,17,12,33,YES,OPEN,SOUTH,33,-1,38,YES,
 		"You approach the bird-man statue, brandishing the sword. His eyes gleam red for\n"
 		"a moment - a warning? A loud crashing is heard behind you and the gate has\n"
-		"closed! Are you sure this is a good idea?"},
+		"closed! You are still holding the sword... Are you sure this is a good idea?"},
 	{41,17,12,33,YES,STORY,SOUTH,-3,-1,-1,YES,
 		"You raise the sword and lower it with a crash onto the statue. As you are about\n"
 		"to strike, the statue supernaturally moves to defend itself, resulting in you\n"

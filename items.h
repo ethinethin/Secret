@@ -37,6 +37,7 @@ extern void list_inv(void);
 extern int in_room(int room_id, char *adj, char *name);
 extern void take_item(int room_id, char *word1, char *word2);
 extern int in_inv(char *adj, char *name);
+extern int unique_item(int room_id, char *adj, char *name);
 extern void drop_item(int room_id, char *word1, char *word2);
 extern void look_item(int room_id, char *word1, char *word2);
 extern void break_item(int item);

@@ -5,32 +5,20 @@
 #include "inter-even.h"
 #include "items.h"
 #include "rooms.h"
-static void one_word(int room, char *word);
-static void two_words(int room, char *words[4]);
-static void three_words(int room, char *words[4]);
-static void four_words(int room, char *words[4]);
 static void interact(int room, int item1, int item2);
 extern int GAME_STATUS;
 
 /* use item word parsing:
- *	This is a disgusting couple of functions to read, because of the large
- *	number of possible ways a user can input a use command. I have split it
- *	up into chunks based on how many words are entered to make it slightly
- *      more readable. But beware, this is a mess of spaghetti code. Also, for
- *	now, "four_words" assumes the user is using two adjectives and two
- *	nouns, which could be made better.
- *
- *	If I were to rewrite this, I would try to interpret it word by word. For
- *	example, start with word 1: if it's a unique item, move to the next. If
- *	it's not, move to the next and try word 1 and 2 as a word pair. Etc. I
- *	would also write a unique_item function in items.c to reduce a lot of
- *	repetitive code from here.
+ *	I have simplified this. It's still a little gross to look at, but it
+ *	should make a lot more sense now!
  */
 extern void use(char *input[8])
 {
 	int i;
 	int j;
 	int room;
+	int items[2];
+	int cur_phrase;
 	char *words[4];
 
 	putchar('\n');
@@ -51,163 +39,36 @@ extern void use(char *input[8])
 		}
 	}
 
+	/* Make sure something was used */
+	if (words[0] == NULL) {
+		printf("Use what?\n");
+		return;
+	}
+
 	/* room id for item information */
 	room = room_id();
 
-	if (words[0] == NULL) {
-		/* no words given */
-		printf("Use what?\n");
-		return;
-	} else if (words[1] == NULL) {
-		/* one word given - WORKING */
-		one_word(room, words[0]);
-	} else if (words[2] == NULL) {
-		/* two words given - WORKING */
-		two_words(room, words);
-	} else if (words[3] == NULL) {
-		/* three words given - WORKING */
-		three_words(room, words);
-	} else {
-		/* four words given - WORKING */
-		four_words(room, words);
-	}
-}
-
-static void one_word(int room, char *word)
-{
-	int items[2];
-	if ((items[0] = in_inv(NULL,word)) == -2 ||
-		(items[1] = in_room(room,NULL,word)) == -2 ||
-		(items[0] >= 0 && items[1] >= 0)) {
-		printf("Use which %s?\n",word);
-		return;
-	} else if (items[0] == -1 && items[1] == -1) {
-		printf("There is no %s here.\n",word);
-		return;
-	} else {
-		if (items[0] == -1) items[0] = items[1];
-		/****************/
-		/* USE ONE ITEM */
-		/****************/
-		interact(room,items[0],-1);
-		return;
-	}
-}
-
-static void two_words(int room, char *words[4])
-{
-	int items[3];
-	/* first item */
-	if ((items[0] = in_inv(words[0],words[1])) >= 0 ||
-		(items[0] = in_room(room, words[0], words[1])) >= 0) {
-		/****************/
-		/* USE ONE ITEM */
-		/****************/
-		interact(room,items[0],-1);
-		return;
-	} else if ((items[0] = in_inv(NULL,words[0])) == -2 ||
-		(items[1] = in_room(room,NULL,words[0])) == -2 ||
-		(items[0] >= 0 && items[1] >= 0)) {
-		printf("Use which %s?\n",words[0]);
-		return;
-	} else if (items[0] == -1 && items[1] == -1) {
-		printf("There is no %s here.\n",words[0]);
-		return;
-	} else {
-		if (items[0] == -1) items[0] = items[1];
-	}
-	/* second item */
-	if ((items[1] = in_inv(NULL,words[1])) == -2 ||
-		(items[2] = in_room(room,NULL,words[1])) == -2 ||
-		(items[1] >= 0 && items[2] >= 0)) {
-		printf("Use which %s?\n",words[1]);
-		return;
-	} else if (items[1] == -1 && items[2] == -1) {
-		printf("There is no %s here.\n",words[1]);
-		return;
-	} else {
-		if (items[1] == -1) items[1] = items[2];
-		/*****************/
-		/* USE TWO ITEMS */
-		/*****************/
-		interact(room,items[0],items[1]);
-		return;
-	}
-}
-
-static void three_words(int room, char *words[4])
-{
-	int items[3];
-	if ((items[0] = in_inv(NULL,words[0])) == -2 ||
-		(items[1] = in_room(room,NULL,words[0])) == -2 ||
-		(items[0] >= 0 && items[1] >= 0)) {
-		printf("Which %s?\n",words[0]);
-		return;
-	} else if (items[0] == -1 && items[1] == -1) {
-		if ((items[0] = in_inv(words[0],words[1])) >= 0 ||
-			(items[1] = in_room(room,words[0],words[1])) >= 0) {
-			/* WORDS 1 AND 2 WERE ITEM 1 */
-			if (items[0] == -1) items[0] = items[1];
-			if ((items[1] = in_inv(NULL,words[2])) == -2 ||
-				(items[2] = in_room(room,NULL,words[2])) == -2 ||
-				(items[1] >= 0 && items[2] >= 0)) {
-				printf("Which %s?\n",words[2]);
-				return;
-			} else if (items[1] == -1 && items[2] == -1) {
-				printf("There is no %s here.\n",words[2]);
-				return;
-			} else {
-				/* WORD 3 WAS ITEM 2 */
-				if (items[1] == -1) items[1] = items[2];
-				interact(room,items[0],items[1]);
+	/* process word by word */
+	for (j = 0, i = 0; i < 3 && j < 2; i++) {
+		if (words[i] == NULL) { 
+			items[j] = -1;
+			break;
+		}
+		if ((cur_phrase = unique_item(room, NULL, words[i])) == -2) {
+			printf("Which %s?\n",words[i]);
+			return;
+		} else if (cur_phrase == -1) {
+			if ((cur_phrase = unique_item(room, words[i], words[i+1])) == -1) {
+				printf("There is no %s here.\n",words[i]);
 				return;
 			}
-		} else {
-			printf("There is no %s here.\n",words[0]);
-			return;
+			i++;
 		}
-	} else {
-		/* WORD 1 WAS ITEM 1 */
-		if (items[0] == -1) items[0] = items[1];
-		if ((items[1] = in_inv(NULL,words[1])) == -2 ||
-			(items[2] = in_room(room,NULL,words[1])) == -2 ||
-			(items[1] >= 0 && items[2] >= 0)) {
-			printf("Which %s?\n",words[1]);
-			return;
-		} else if (items[1] == -1 && items[2] == -1) {
-			if ((items[1] = in_inv(words[1],words[2])) >= 0 ||
-				(items[1] = in_room(room,words[1],words[2])) >=0) {
-				/* WORDS 2 AND 3 WERE ITEM 2 */
-				if (items[1] == -1) items[1] = items[2];
-				interact(room,items[0],items[1]);
-			} else {
-				printf("There is no %s here.\n",words[1]);
-				return;
-			}
-		} else {
-			/* WORD 2 WAS ITEM 2 */
-			if (items[1] == -1) items[1] = items[2];
-			interact(room,items[0],items[1]);
-			return;
-		}
+		items[j++] = cur_phrase;
 	}
-}
 
-static void four_words(int room, char *words[4])
-{
-	int items[2];
-	if (!((items[0] = in_inv(words[0],words[1])) != -1 ||
-		(items[0] = in_room(room,words[0],words[1])) != -1)) {
-		printf("There is no %s %s here.\n",words[0],words[1]);
-		return;
-	} else if (!((items[1] = in_inv(words[2],words[3])) != -1 ||
-		(items[1] = in_room(room,words[2],words[3])) != -1)) {
-		printf("There is no %s %s here.\n",words[2],words[3]);
-		return;
-	} else {
-		interact(room,items[0],items[1]);
-		return;
-	}
+	/* parsed items, now use them */
+	interact(room, items[0], items[1]);
 }
 
 static void interact(int room, int item1, int item2)

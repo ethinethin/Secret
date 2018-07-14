@@ -224,6 +224,26 @@ extern int in_inv(char *adj, char *name)
 	}
 }
 
+extern int unique_item(int room_id, char *adj, char *name)
+{
+	int room;
+	int inv;
+
+	if (name == NULL) return -1;
+
+	room = in_room(room_id, adj,name);
+	inv = in_inv(adj,name);
+
+	if ((room >= 0 && inv >= 0) || room == -2 || inv == -2) {
+		return -2;
+	} else if (room == -1 && inv == -1) {
+		return -1;
+	} else {
+		if (inv == -1) inv = room;
+		return inv;
+	}
+}
+
 /* drop item */
 extern void drop_item(int room_id, char *word1, char *word2)
 {
