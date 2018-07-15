@@ -90,6 +90,8 @@ static void interact(int room, int item1, int item2)
 				create_item(interactions[i].event_attr1, interactions[i].event_attr2);
 			} else if (interactions[i].event_type == STORY) {
 				GAME_STATUS = interactions[i].event_attr1;
+			} else if (interactions[i].event_type == TAKE) {
+				take(interactions[i].event_attr1);
 			}
 
 			/* print description */

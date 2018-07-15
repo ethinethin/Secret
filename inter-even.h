@@ -50,6 +50,7 @@ struct event {
 #define BREAK 1
 #define CREATE 2
 #define STORY 3
+#define TAKE 4
 
 #define NORTH 0
 #define EAST 1
@@ -137,9 +138,9 @@ static struct event interactions[] = {
 		"The blacksmith sees the statuette and his eyes get wide.\n\n"
 		"\"Please! I must have that! Take this sword! I crafted it myself! It is the most\n"
 		"finely made sword you will ever see!\"\n"},
-	{30,16,0,6,NO,CREATE,EAST,17,6,31,NO,
+	{30,16,0,6,NO,TAKE,EAST,17,6,31,NO,
 		"You are impressed with the quality of the sword and think it is an even trade.\n"
-		"The blacksmith takes the statuette and places the sword on the counter."},
+		"The blacksmith takes the statuette and hands you the sword carefully."},
 	{31,16,0,6,NO,BREAK,EAST,0,6,32,NO,NULL},
 	{32,16,0,6,NO,CREATE,EAST,1,6,-1,YES,NULL},
 	

@@ -195,6 +195,11 @@ extern void take_item(int room_id, char *word1, char *word2)
 	}
 }
 
+extern void take(int item_id)
+{
+	inventory[item_id] = 1;
+}
+
 static int in_inv(char *adj, char *name)
 {
 	int i;
