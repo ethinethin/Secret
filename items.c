@@ -293,8 +293,7 @@ extern void look_item(int room_id, char *word1, char *word2)
 {
 	char *adj = NULL;
 	char *name = NULL;
-	int item_num1;
-	int item_num2;
+	int item_num;
 
 	putchar('\n');
 
@@ -307,23 +306,20 @@ extern void look_item(int room_id, char *word1, char *word2)
 	assign_name(&word1, &word2, &adj, &name);
 
 	/* in location or inventory? */
-	item_num1 = in_room(room_id, adj, name);
-	item_num2 = in_inv(adj, name);
+	item_num = unique_item(room_id, adj, name);
 
 	/* is it ambiguous? */
-	if (item_num1 == -2 || item_num2 == -2 || (item_num1 >= 0 && item_num2 >= 0)) {
+	if (item_num == -2) {
 		printf("Which %s?\n",name);
 		return;
-	} else if (item_num1 == -1 && item_num2 == -1) {
+	} else if (item_num == -1) {
 		printf("There is no ");
 		if (adj != NULL) printf("%s ",adj);
-		printf("%s here.\n",name);
+		printf("%s here.",name);
 		return;
-	} else if (item_num1 == -1) {
-		item_num1 = item_num2;
-	}
-
-	printf("%s\n",items[item_num1].item_desc_exam);
+	} 
+	/* output description */
+	printf("%s\n",items[item_num].item_desc_exam);
 }
 
 extern void break_item(int item_id)
