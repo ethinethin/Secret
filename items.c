@@ -315,7 +315,7 @@ extern void look_item(int room_id, char *word1, char *word2)
 	} else if (item_num == -1) {
 		printf("There is no ");
 		if (adj != NULL) printf("%s ",adj);
-		printf("%s here.",name);
+		printf("%s here.\n",name);
 		return;
 	} 
 	/* output description */
